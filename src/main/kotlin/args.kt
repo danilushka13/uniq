@@ -26,9 +26,9 @@ class Args(parser: ArgParser) {
     )
 
     val input by parser.positional("Input file name. If not specified will be read from the console")
-        .default<String?>(null)
+        .default<String>("")
 
     val output by parser.storing("-o",
         help = "Output file name. If not specified will be displayed on the console")
-        .default<String?>(null)
+        .default<String>("")
 }

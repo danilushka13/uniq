@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test
 import java.io.File
 import kotlin.test.assertEquals
 import uniq.UniqStrings
+import java.io.FileNotFoundException
 
 class UniqTest {
 
@@ -11,7 +12,7 @@ class UniqTest {
         val file = File(testName)
         val content = file.readLines().joinToString("\n")
         val expectedContent = file1.readLines().joinToString("\n")
-        assertEquals(expectedContent, content, "ФАЙЛЫ РАЗНЫЕ, ДИБИЛУШКА")
+        assertEquals(expectedContent, content, "files are different")
     }
 
     @Test
@@ -31,6 +32,13 @@ class UniqTest {
 
         UniqStrings(i = true, u = true, c = true, s = 4, input = "begin.txt", output = "end.txt").output()
         assertFileContent("test5.txt")
+
+        try{
+            UniqStrings(i = true, u = true, c = true, s = 4, input = "begin.txt", output = "someOtherName.txt").output()
+            throw AssertionError("FileNotFoundException expected")
+        } catch (_: FileNotFoundException){
+
+        }
     }
 
 
